@@ -7,7 +7,7 @@
     <br>
     <input placeholder="parool" v-model="password"><br>
     <br>
-    <button>Logi sisse</button>
+    <button v-on:click="login">Logi sisse</button>
     <br>
     <br>
 
