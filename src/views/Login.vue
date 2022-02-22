@@ -30,6 +30,8 @@ export default {
     return {
       username: "",
       password: "",
+      firstName: "",
+      lastName: "",
       options: {},
       selected: ""
     }
@@ -38,16 +40,19 @@ export default {
     login: function () {
       this.$http.get("/login/in", {
             params: {
-              userName: this.userName,
+              username: this.username,
               password: this.password
             }
           }
       ).then(response => {
-        alert("Tere tulemast rattarenti" + response.data.firstName + "" + response.data.lastName)
+        this.firstName = response.data.firstName
+        this.lastName = response.data.lastName
+
+        alert("Tere tulemast rattarenti " + response.data.firstName + " " + response.data.lastName)
         this.options = response.data.roles
         console.log(response.data)
       }).catch(error => {
-        alert(error.response.data.message + "Parool on vale" + error.response.data.errorCode)
+        alert(error.response.data.message + " Parool on vale " + error.response.data.errorCode)
         console.log(error)
       })
     },
