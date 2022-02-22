@@ -1,7 +1,7 @@
 <template>
   <div class="admin">
     <h1>Tere tulemast admin lehele.</h1>
-    <p>Siin saad lisada uue rattamudeli, uue ratta ning uue kasutaja.</p>
+    <h5>Uue kasutaja lisamine:</h5>
 
     <div>
       <input placeholder="Eesnimi" v-model="firstName">
@@ -13,9 +13,9 @@
       <input placeholder="Telefoninumber" v-model="phone">
     </div>
     <div>
-      <input placeholder="e-mail" v-model="email">
+      <input placeholder="E-post" v-model="email">
     </div>
-    <br>
+
     <br>
     <div>
       <input placeholder="Kasutajanimi" v-model="username">
