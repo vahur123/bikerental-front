@@ -4,24 +4,24 @@
     <p>Siin saad lisada uue rattamudeli, uue ratta ning uue kasutaja.</p>
 
     <div>
-      <input placeholder="Eesnimi" v-model="contact.firstName">
+      <input placeholder="Eesnimi" v-model="firstName">
     </div>
     <div>
-      <input placeholder="Perekonnanimi" v-model="contact.lastName">
+      <input placeholder="Perekonnanimi" v-model="lastName">
     </div>
     <div>
-      <input placeholder="Telefoninumber" v-model="contact.phone">
+      <input placeholder="Telefoninumber" v-model="phone">
     </div>
     <div>
-      <input placeholder="e-mail" v-model="contact.email">
+      <input placeholder="e-mail" v-model="email">
     </div>
     <br>
     <br>
     <div>
-      <input placeholder="Kasutajanimi" v-model="user.username">
+      <input placeholder="Kasutajanimi" v-model="username">
     </div>
     <div>
-      <input placeholder="Parool" v-model="user.password">
+      <input placeholder="Parool" v-model="password">
     </div>
     <div>
       <button v-on:click="addNewUser">Lisa kasutaja</button>
@@ -34,17 +34,29 @@ export default {
   name: "Admin",
   data: function () {
     return {
-      user: {},
-      contact: {},
+      firstName: '',
+      lastName: '',
+      phone: '',
+      email: '',
+      username: '',
+      password: '',
       isError: false,
 
     }
   },
   methods: {
     addNewUser: function () {
-      this.$http.post("/user/add/new", this.user, this.contact
+      let response = {
+        firstName: this.firstName,
+        lastName: this.lastName,
+        phone: this.phone,
+        email: this.email,
+        username: this.username,
+        password: this.password
+      }
+      this.$http.post("/user/add/new", response
       ).then(response => {
-        alert(response.data.message)
+        alert("Uus kasutaja " + this.firstName + " " + this.lastName + " lisatud")
         console.log(response.data)
       }).catch(error => {
         console.log(error)

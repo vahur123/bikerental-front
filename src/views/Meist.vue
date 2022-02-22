@@ -2,7 +2,7 @@
   <div class="meist">
   <div>Vahur ja Aleksei rendivad Sulle rattaid headel tingimustel.</div>
 
-  <img style="width: 800px;" src="../assets/tallbike.jpg">
+  <img src="../assets/tallbike.jpg" class="img-fluid" alt="Responsive image">
   </div>
 </template>
 
