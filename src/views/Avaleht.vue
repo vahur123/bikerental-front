@@ -13,14 +13,21 @@
     <br><br>
 <!--    <input placeholder="rattatüüp" v-model="type">-->
 <!--    <button v-on:click="showBikeModelByType">Lae rattad</button>-->
-    <table v-if="selected">
+    <table style="position: relative; left: 500px; " v-if="selected">
       <tr>
         <th>Rattamudel</th>
-        <th>Raami suurus</th>
+        <th>Suurus</th>
+        <th>Päeva hind</th>
+        <th>Saadaval tk</th>
       </tr>
       <tr v-for="row in models">
         <td>{{ row.bikeName }}</td>
         <td>{{ row.sizeName }}</td>
+        <td>{{ row.pricePerDay }}</td>
+        <td>{{ row.numberOfBikesAvailable }}</td>
+        <td>
+          <button>Vali mudel</button>
+        </td>
       </tr>
     </table>
   </div>
