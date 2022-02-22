@@ -13,7 +13,7 @@
     <br><br>
 <!--    <input placeholder="rattatüüp" v-model="type">-->
 <!--    <button v-on:click="showBikeModelByType">Lae rattad</button>-->
-    <table style="position: relative; left: 500px; " v-if="selected">
+    <table style="position: fixed; left: 500px; " v-if="selected">
       <tr>
         <th>Rattamudel</th>
         <th>Suurus</th>

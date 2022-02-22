@@ -5,6 +5,7 @@ import Login from "@/views/Login";
 import Renditingimused from "@/views/Renditingimused";
 import Avaleht from "@/views/Avaleht";
 import Meist from "@/views/Meist";
+import Admin from "@/views/Admin";
 
 Vue.use(VueRouter)
 
@@ -18,6 +19,11 @@ const routes = [
     path: '/avaleht',
     name: 'Avaleht',
     component: Avaleht
+  },
+  {
+    path: '/admin',
+    name: 'Admin',
+    component: Admin
   },
   {
     path: '/renditingimused',
