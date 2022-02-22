@@ -4,6 +4,7 @@ import Home from '../views/Home.vue'
 import Login from "@/views/Login";
 import Renditingimused from "@/views/Renditingimused";
 import Avaleht from "@/views/Avaleht";
+import Meist from "@/views/Meist";
 
 Vue.use(VueRouter)
 
@@ -22,6 +23,11 @@ const routes = [
     path: '/renditingimused',
     name: 'Renditingimused',
     component: Renditingimused
+  },
+  {
+    path: '/meist',
+    name: 'Meist',
+    component: Meist
   },
   {
     path: '/',
