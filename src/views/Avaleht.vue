@@ -5,26 +5,26 @@
     <br>
     <h5>Palun vali kuupäevad:</h5>
 
-    <input type="date" placeholder="Rentimise alguse kuupäev">
-    <input type="date" placeholder="Rentimise lõpu kuupäev">
-    <button>Vali kuupäevad</button>
+    <input type="date" placeholder="Rentimise alguse kuupäev" v-model="requiredStartDate">
+    <input type="date" placeholder="Rentimise lõpu kuupäev" v-model="requiredEndDate">
     <br>
     <br>
     <h5>Palun vali, millist tüüpi ratast soovid rentida:</h5>
     <div>
-      <select v-on:change="showBikeModelByType" v-model="selected">
+      <select v-on:change="showBikeModelByType" v-model="selectedTypeId">
         <option disabled value="">Vali rattatüüp</option>
         <option v-for="option in options" :value="option.id">{{ option.name }}</option>
       </select>
     </div>
     <br><br>
-    <table v-if="selected" class="table table-hover">
+    <table v-if="selectedTypeId" class="table table-hover">
       <thead>
       <tr>
         <th>Rattamudel</th>
         <th>Suurus</th>
         <th>Päeva hind</th>
         <th>Saadaval tk</th>
+        <th>broneeri tk</th>
       </tr>
       </thead>
       <tbody>
@@ -33,8 +33,9 @@
         <td>{{ row.sizeName }}</td>
         <td>{{ row.pricePerDay }}</td>
         <td>{{ row.numberOfBikesAvailable }}</td>
+        <td><input type="number" v-model="row.numberOfBikesRequired"></td>
         <td>
-          <button>Vali mudel</button>
+          <button>lisa</button>
         </td>
       </tr>
       </tbody>
@@ -50,7 +51,14 @@ export default {
       options: [],
       type: '',
       models: [],
-      selected: ""
+      requiredStartDate: "",
+      requiredEndDate: "",
+      requirementDetails: {
+        typeId: 0,
+        startDate: "",
+        endDate: ""
+      },
+      selectedTypeId: ""
     }
   },
   methods: {
@@ -64,18 +72,34 @@ export default {
       })
     },
     showBikeModelByType: function () {
-      this.$http.get("/bike/model/by/type", {
-        params: {
-          typeId: this.selected
-        }
-      })
-          .then(response => {
-            this.models = response.data
-            console.log(response.data)
-          }).catch(error => {
+
+      this.requirementDetails.typeId = this.selectedTypeId
+      this.requirementDetails.startDate = this.requiredStartDate
+      this.requirementDetails.endDate = this.requiredEndDate
+
+      this.$http.post("/bike/model/by/type", this.requirementDetails
+      ).then(response => {
+        this.models = response.data
+        console.log(response.data)
+      }).catch(error => {
         console.log(error)
       })
     }
+    ,
+
+    // showBikeModelByType: function () {
+    //   this.$http.get("/bike/model/by/type", {
+    //     params: {
+    //       typeId: this.selectedTypeId
+    //     }
+    //   })
+    //       .then(response => {
+    //         this.models = response.data
+    //         console.log(response.data)
+    //       }).catch(error => {
+    //     console.log(error)
+    //   })
+    // }
   },
   beforeMount() {
     this.showBikeTypes()
