@@ -2,17 +2,22 @@
   <div>
     <h1>Tere tulemast Vali-Rattarenti!</h1>
     <br>
-    <h3>Palun vali, millist tüüpi ratast soovid rentida:</h3>
+    <br>
+    <h5>Palun vali kuupäevad:</h5>
+
+    <input type="date" placeholder="Rentimise alguse kuupäev">
+    <input type="date" placeholder="Rentimise lõpu kuupäev">
+    <button>Vali kuupäevad</button>
+    <br>
+    <br>
+    <h5>Palun vali, millist tüüpi ratast soovid rentida:</h5>
     <div>
       <select v-on:change="showBikeModelByType" v-model="selected">
         <option disabled value="">Vali rattatüüp</option>
         <option v-for="option in options" :value="option.id">{{ option.name }}</option>
       </select>
     </div>
-<!--    <span>typeId: {{ selected }}</span>-->
     <br><br>
-<!--    <input placeholder="rattatüüp" v-model="type">-->
-<!--    <button v-on:click="showBikeModelByType">Lae rattad</button>-->
     <table v-if="selected" class="table table-hover">
       <thead>
       <tr>
