@@ -3,13 +3,12 @@
     <h1>Tere tulemast Vali-Rattarenti!</h1>
     <br>
     <br>
-    <h5>Palun vali kuupäevad:</h5>
-
-    <input type="date" placeholder="Rentimise alguse kuupäev" v-model="requiredStartDate">
-    <input type="date" placeholder="Rentimise lõpu kuupäev" v-model="requiredEndDate">
+    <p>Palun vali kuupäevad:</p>
+    <input type="date" min="2022-02-25" placeholder="Rentimise alguse kuupäev" v-model="requiredStartDate">
+    <input type="date" min="2022-02-25" placeholder="Rentimise lõpu kuupäev" v-model="requiredEndDate">
     <br>
     <br>
-    <h5>Palun vali, millist tüüpi ratast soovid rentida:</h5>
+    <p>Palun vali, millist tüüpi ratast soovid rentida:</p>
     <div>
       <select v-on:change="showBikeModelByType" v-model="selectedTypeId">
         <option disabled value="">Vali rattatüüp</option>
@@ -28,18 +27,18 @@
       </tr>
       </thead>
       <tbody>
-      <tr v-for="row in models">
+      <tr v-for="row in bikeModelInfos">
         <td>{{ row.bikeName }}</td>
         <td>{{ row.sizeName }}</td>
         <td>{{ row.pricePerDay }}</td>
         <td>{{ row.numberOfBikesAvailable }}</td>
         <td><input type="number" v-model="row.numberOfBikesRequired"></td>
-        <td>
-          <button>lisa</button>
-        </td>
       </tr>
       </tbody>
     </table>
+    <button v-on:click="reserveBikes">Lisa rattad tellimusele</button>
+    <button>Mine ostukorvi</button>
+
   </div>
 </template>
 
@@ -50,14 +49,20 @@ export default {
     return {
       options: [],
       type: '',
-      models: [],
-      requiredStartDate: "",
-      requiredEndDate: "",
+      reserveBikesRequest: {
+        requirementDetails: {},
+        bikeModelInfos: []
+      },
       requirementDetails: {
+        userId: 1,
         typeId: 0,
         startDate: "",
         endDate: ""
       },
+      bikeModelInfos: [],
+      requiredStartDate: "",
+      requiredEndDate: "",
+
       selectedTypeId: ""
     }
   },
@@ -79,27 +84,26 @@ export default {
 
       this.$http.post("/bike/model/by/type", this.requirementDetails
       ).then(response => {
-        this.models = response.data
+        this.bikeModelInfos = response.data
+        console.log(response.data)
+      }).catch(error => {
+        console.log(error)
+      })
+    },
+    reserveBikes: function () {
+      this.reserveBikesRequest.requirementDetails = this.requirementDetails
+      this.reserveBikesRequest.bikeModelInfos = this.bikeModelInfos
+
+      this.$http.post("/bike/reserve", this.reserveBikesRequest
+      ).then(response => {
+        alert("success")
         console.log(response.data)
       }).catch(error => {
         console.log(error)
       })
     }
-    ,
 
-    // showBikeModelByType: function () {
-    //   this.$http.get("/bike/model/by/type", {
-    //     params: {
-    //       typeId: this.selectedTypeId
-    //     }
-    //   })
-    //       .then(response => {
-    //         this.models = response.data
-    //         console.log(response.data)
-    //       }).catch(error => {
-    //     console.log(error)
-    //   })
-    // }
+
   },
   beforeMount() {
     this.showBikeTypes()
