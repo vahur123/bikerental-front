@@ -21,10 +21,10 @@
       <input placeholder="Kasutajanimi" v-model="username">
     </div>
     <div>
-      <input placeholder="Parool" v-model="password">
+      <input type="password" placeholder="Parool" v-model="password">
     </div>
     <div>
-      <button v-on:click="addNewUser">Lisa kasutaja</button>
+      <button class="btn btn-primary" v-on:click="addNewUser">Lisa kasutaja</button>
     </div>
   </div>
 </template>

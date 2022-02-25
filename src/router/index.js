@@ -6,6 +6,7 @@ import Renditingimused from "@/views/Renditingimused";
 import Avaleht from "@/views/Avaleht";
 import Meist from "@/views/Meist";
 import Admin from "@/views/Admin";
+import Ostukorv from "@/views/Ostukorv";
 
 Vue.use(VueRouter)
 
@@ -19,6 +20,11 @@ const routes = [
     path: '/avaleht',
     name: 'Avaleht',
     component: Avaleht
+  },
+  {
+    path: '/ostukorv',
+    name: 'Ostukorv',
+    component: Ostukorv
   },
   {
     path: '/admin',

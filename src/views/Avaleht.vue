@@ -36,8 +36,8 @@
       </tr>
       </tbody>
     </table>
-    <button v-on:click="reserveBikes">Lisa rattad tellimusele</button>
-    <button>Mine ostukorvi</button>
+    <button v-on:click="reserveBikes">Lisa rattad ostukorvi</button>
+    <button v-on:click="">Mine ostukorvi</button>
 
   </div>
 </template>
