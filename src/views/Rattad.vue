@@ -23,7 +23,10 @@
       <div name="right">
         <img src="../assets/GoodLogo.jpg" style="width:300px; height:300px;">
       </div>
-      <div name="left"></div>
+      <div name="left">
+        <p>{{firstName}}</p>
+        <p>{{lastName}}</p>
+      </div>
       <div name="middle">
         <br><br>
         <table v-if="selectedTypeId" class="table table-hover">
@@ -78,7 +81,9 @@ export default {
       bikeModelInfos: [],
       requiredStartDate: "",
       requiredEndDate: "",
-      selectedTypeId: ""
+      selectedTypeId: "",
+      firstName: sessionStorage.getItem('firstName'),
+      lastName: sessionStorage.getItem('lastName')
     }
   },
   methods: {
@@ -114,13 +119,13 @@ export default {
       ).then(response => {
         alert("Rattad lisatud. Vali veel või mine edasi ostukorvi.")
         console.log(response.data)
+        sessionStorage.setItem('bikeReserveInfo', JSON.stringify(response.data))
       }).catch(error => {
         console.log(error)
       })
     },
     moveToCart: function () {
-
-     this.$router.push({name: 'Ostukorv', query: {chosenModel: this.reserveBikesRequest.bikeModelInfos, chosenAmount: this.reserveBikesRequest.requirementDetails}})
+     this.$router.push({name: 'OstukorvRoute'})
     }
   },
   beforeMount() {

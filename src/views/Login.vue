@@ -25,7 +25,7 @@
         <br>
         <br>
         <span>Pole kasutaja? </span> <br>
-        <button class="btn btn-primary" v-on:click="signup">Registreeru</button>
+<!--        <button class="btn btn-primary" v-on:click="signup">Registreeru</button>-->
         <br>
         <br>
       </div>
@@ -45,6 +45,7 @@ export default {
       password: "",
       firstName: "",
       lastName: "",
+      email: "",
       options: {},
       selected: ""
     }
@@ -63,6 +64,12 @@ export default {
 
         alert("Tere tulemast rattarenti " + response.data.firstName + " " + response.data.lastName)
         this.options = response.data.roles
+        sessionStorage.setItem('userId', response.data.userId)
+        sessionStorage.setItem('firstName', this.firstName)
+        sessionStorage.setItem('lastName', this.lastName)
+        // sessionStorage.setItem('phone', response.data.phone)
+        sessionStorage.setItem('email', response.data.email)
+        this.$router.push({name: 'RattadRoute'})
       }).catch(error => {
         alert(error.response.data.message + " Parool on vale " + error.response.data.errorCode)
         console.log(error)

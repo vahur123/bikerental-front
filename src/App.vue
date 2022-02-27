@@ -4,10 +4,10 @@
       <router-link to="/bikes">Rattad</router-link> |
       <router-link to="/ostukorv">Ostukorv</router-link> |
       <router-link to="/login">Login</router-link> |
+      <router-link to="/register">Registreeru</router-link> |
       <router-link to="/meist">Meist</router-link> |
       <router-link to="/renditingimused">Renditingimused</router-link> |
-      <router-link to="/kontakt">Kontakt</router-link> |
-      <router-link to="/admin">Admin</router-link>
+      <router-link to="/kontakt">Kontakt</router-link>
     </div>
     <router-view/>
   </div>

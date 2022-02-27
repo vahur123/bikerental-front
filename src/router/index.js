@@ -5,21 +5,23 @@ import Login from "@/views/Login";
 import Renditingimused from "@/views/Renditingimused";
 import Avaleht from "@/views/Rattad";
 import Meist from "@/views/Meist";
-import Admin from "@/views/Admin";
+import Admin from "@/views/Registeeru";
 import Ostukorv from "@/views/Ostukorv";
 import Rattad from "@/views/Rattad";
+import Registeeru from "@/views/Registeeru";
+import Kontakt from "@/views/Kontakt";
 
 Vue.use(VueRouter)
 
 const routes = [
   {
     path: '/bikes',
-    name: 'Rattad',
+    name: 'RattadRoute',
     component: Rattad
   },
   {
     path: '/ostukorv',
-    name: 'Ostukorv',
+    name: 'OstukorvRoute',
     component: Ostukorv
   },
   {
@@ -28,9 +30,9 @@ const routes = [
     component: Login
   },
   {
-    path: '/admin',
-    name: 'Admin',
-    component: Admin
+    path: '/register',
+    name: 'RegistreeruRoute',
+    component: Registeeru
   },
   {
     path: '/renditingimused',
@@ -46,6 +48,11 @@ const routes = [
     path: '/',
     name: 'Home',
     component: Home
+  },
+  {
+    path: '/kontakt',
+    name: 'Kontakt',
+    component: Kontakt
   },
   {
     path: '/about',
