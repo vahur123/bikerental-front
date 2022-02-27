@@ -3,28 +3,29 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Login from "@/views/Login";
 import Renditingimused from "@/views/Renditingimused";
-import Avaleht from "@/views/Avaleht";
+import Avaleht from "@/views/Rattad";
 import Meist from "@/views/Meist";
 import Admin from "@/views/Admin";
 import Ostukorv from "@/views/Ostukorv";
+import Rattad from "@/views/Rattad";
 
 Vue.use(VueRouter)
 
 const routes = [
   {
-    path: '/login',
-    name: 'Login',
-    component: Login
-  },
-  {
-    path: '/avaleht',
-    name: 'Avaleht',
-    component: Avaleht
+    path: '/bikes',
+    name: 'Rattad',
+    component: Rattad
   },
   {
     path: '/ostukorv',
     name: 'Ostukorv',
     component: Ostukorv
+  },
+  {
+    path: '/login',
+    name: 'Login',
+    component: Login
   },
   {
     path: '/admin',
