@@ -51,7 +51,7 @@ export default {
       // lastName: JSON.parse(sessionStorage.getItem('lastName'))
       firstName: sessionStorage.getItem('firstName'),
       lastName: sessionStorage.getItem('lastName'),
-      phone: sessionStorage.getItem('phone'),
+      // phone: sessionStorage.getItem('phone'),
       email: sessionStorage.getItem('email')
     }
   }

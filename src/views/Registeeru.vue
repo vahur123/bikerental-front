@@ -1,5 +1,5 @@
 <template>
-  <div class="admin">
+  <div class="register">
     <h1>Tere tulemast admin lehele.</h1>
     <h5>Uue kasutaja lisamine:</h5>
 
@@ -31,7 +31,7 @@
 
 <script>
 export default {
-  name: "Admin",
+  name: "Registreeru",
   data: function () {
     return {
       firstName: '',

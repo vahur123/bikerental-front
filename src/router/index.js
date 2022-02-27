@@ -3,9 +3,8 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Login from "@/views/Login";
 import Renditingimused from "@/views/Renditingimused";
-import Avaleht from "@/views/Rattad";
 import Meist from "@/views/Meist";
-import Admin from "@/views/Registeeru";
+import Admin from "@/views/Admin";
 import Ostukorv from "@/views/Ostukorv";
 import Rattad from "@/views/Rattad";
 import Registeeru from "@/views/Registeeru";
@@ -28,6 +27,11 @@ const routes = [
     path: '/login',
     name: 'Login',
     component: Login
+  },
+  {
+    path: '/admin',
+    name: 'Admin',
+    component: Admin
   },
   {
     path: '/register',
