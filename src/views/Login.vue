@@ -1,10 +1,10 @@
 <template>
   <div>
-    <h2 style="color: #a5ffd7">Palun logi sisse</h2>
+    <h1 style="color: #3cbfb2">Tere tulemast Vali-Rattarenti!</h1> <br>
+    <h2 style="color: #3cbfb2">Palun logi sisse</h2>
     <div class="grid-container">
       <div name="vasak"></div>
       <div name="keskmine">
-        <br>
         <br>
         <input type="text" placeholder="kasutajanimi" v-model="username">
         <br>
@@ -25,7 +25,7 @@
         <br>
         <br>
         <span>Pole kasutaja? </span> <br>
-<!--        <button class="btn btn-primary" v-on:click="signup">Registreeru</button>-->
+        <button class="btn btn-primary" v-on:click="moveToSignUp">Registreeru</button>
         <br>
         <br>
       </div>
@@ -71,10 +71,13 @@ export default {
         sessionStorage.setItem('email', response.data.email)
         this.$router.push({name: 'RattadRoute'})
       }).catch(error => {
-        alert(error.response.data.message + " Parool on vale " + error.response.data.errorCode)
-        console.log(error)
+        alert(error.response.data.message + " Parool on vale ")
+        console.log(error.response.data.errorCode)
       })
     },
+    moveToSignUp: function () {
+      this.$router.push({name: 'RegistreeruRoute'})
+    }
   }
 }
 </script>
@@ -87,5 +90,8 @@ export default {
   gap: 0px 0px;
   grid-template-areas:
     ". . .";
+}
+h2 {
+  font-weight: bold;
 }
 </style>

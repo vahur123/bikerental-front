@@ -1,18 +1,22 @@
 <template>
-  <div>
-    <h1 style="color: #37ffbc">Tere tulemast Vali-Rattarenti!</h1>
-    <br>
-    <br>
+  <div class="Rattad">
+    <h2 style="color: #3cbfb2" font-weight="bold">Vabade rataste nägemiseks</h2>
     <div class="grid-container">
-      <div name="left"></div>
+      <div name="left">
+        <span>Sisse logitud kasutaja:</span> <br>
+        <span>Eesnimi: {{ firstName }} </span> <br>
+        <span>Perekonnanimi: {{ lastName }}</span> <br>
+        <!--      <span>Telefon: {{ phone }}</span> <br>-->
+        <span>E-post: {{ email }}</span> <br>
+      </div>
       <div name="middle">
-        <h4>Saadaval olevate rataste nägemiseks</h4>
-        <h4>vali rendiperiood:</h4>
+
+        <h4>vali rendiperiood</h4>
         <input type="date" min="2022-02-28" placeholder="Rentimise alguse kuupäev" v-model="requiredStartDate">
         <input type="date" min="2022-02-28" placeholder="Rentimise lõpu kuupäev" v-model="requiredEndDate">
         <br>
         <br>
-        <h4>Vali rattatüüp:</h4>
+        <h4>ning rattatüüp</h4>
         <div>
           <select v-on:change="showBikeModelByType" v-model="selectedTypeId">
             <option disabled value="">Vali rattatüüp</option>
@@ -23,10 +27,7 @@
       <div name="right">
         <img src="../assets/GoodLogo.jpg" style="width:300px; height:300px;">
       </div>
-      <div name="left">
-        <p>{{firstName}}</p>
-        <p>{{lastName}}</p>
-      </div>
+      <div name="left"></div>
       <div name="middle">
         <br><br>
         <table v-if="selectedTypeId" class="table table-hover">
@@ -83,7 +84,8 @@ export default {
       requiredEndDate: "",
       selectedTypeId: "",
       firstName: sessionStorage.getItem('firstName'),
-      lastName: sessionStorage.getItem('lastName')
+      lastName: sessionStorage.getItem('lastName'),
+      email: sessionStorage.getItem('email')
     }
   },
   methods: {
@@ -142,5 +144,8 @@ export default {
   gap: 0px 0px;
   grid-template-areas:
     ". . .";
+}
+h2 {
+  font-weight: bold;
 }
 </style>
