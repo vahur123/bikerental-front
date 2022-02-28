@@ -43,6 +43,7 @@
           <br>
           <b>Tasutamine kohapeal sularahas.</b> <br>
         </h6>
+        <button class="btn btn-primary" v-on:click="approveReservation">Kinnitan broneeringu</button>
       </div>
       <div>
 
@@ -64,6 +65,11 @@ export default {
       lastName: sessionStorage.getItem('lastName'),
       // phone: sessionStorage.getItem('phone'),
       email: sessionStorage.getItem('email')
+    }
+  },
+  methods: {
+    approveReservation: function () {
+      alert("Täname broneeringu kinnituse eest! Võtame Sinuga ühendust!")
     }
   }
 }

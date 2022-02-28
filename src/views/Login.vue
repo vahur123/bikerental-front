@@ -15,7 +15,7 @@
         <button class="btn btn-primary" v-on:click="login">Logi sisse</button>
         <br>
         <br>
-        <select v-model="selected">
+        <select v-on:change="moveToBikes" v-model="selected">
           <option disabled value="">Vali roll</option>
           <option v-for="option in options" :value="option.roleId">{{ option.roleName }}</option>
         </select>
@@ -67,9 +67,7 @@ export default {
         sessionStorage.setItem('userId', response.data.userId)
         sessionStorage.setItem('firstName', this.firstName)
         sessionStorage.setItem('lastName', this.lastName)
-        // sessionStorage.setItem('phone', response.data.phone)
-        sessionStorage.setItem('email', response.data.email)
-        this.$router.push({name: 'RattadRoute'})
+        // sessionStorage.setItem('email', response.data.email)
       }).catch(error => {
         alert(error.response.data.message + " Parool on vale ")
         console.log(error.response.data.errorCode)
@@ -77,6 +75,9 @@ export default {
     },
     moveToSignUp: function () {
       this.$router.push({name: 'RegistreeruRoute'})
+    },
+    moveToBikes: function () {
+      this.$router.push({name: 'RattadRoute'})
     }
   }
 }

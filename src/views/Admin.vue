@@ -8,8 +8,14 @@
 
       <div>
         <h5>Palun sisesta uue rattamudeli andmed:</h5>
+<!--        <div>-->
+<!--          <input placeholder="Rattatüüp" v-model="typeName">-->
+<!--        </div>-->
         <div>
-          <input placeholder="Rattatüüp" v-model="typeName">
+          <select v-model="selectedTypeName">
+            <option disabled value="">Vali rattatüüp</option>
+            <option v-for="option in options" :value="option.name">{{ option.name }}</option>
+          </select>
         </div>
         <div>
           <input placeholder="Raami suurus" v-model="sizeName">
@@ -69,12 +75,14 @@ export default {
       isError: false,
       bikeId: '',
       bikeInShopId: '',
+      options: [],
+      selectedTypeName: "",
     }
   },
   methods: {
     addNewBikeModel: function () {
       let response = {
-        typeName: this.typeName,
+        typeName: this.selectedTypeName,
         sizeName: this.sizeName,
         bikeName: this.bikeName,
         adultBike: this.adultBike,
@@ -101,6 +109,18 @@ export default {
         console.log(error)
       })
     },
+    showBikeTypes: function () {
+      this.$http.get("/bike/all/types")
+          .then(response => {
+            this.options = response.data
+            console.log(response.data)
+          }).catch(error => {
+        console.log(error)
+      })
+    }
+  },
+  beforeMount() {
+    this.showBikeTypes()
   }
 }
 </script>
